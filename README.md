@@ -15,3 +15,5 @@ Clean up some of the code. There are more efficient ways to set the rates (i.e. 
 
 ## other stuff
 *Use anything I write at your own peril.* 
+
+Thanks to [Sam Oehlert](https://github.com/soehlert) for helping teach me the fundamentals. 
