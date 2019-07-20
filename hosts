@@ -1,0 +1,9 @@
+# UBNT CPE 
+[cpe]
+10.100.100.100 # change this to somethintg useful, or use a range like below
+## c-10-100-100-[2:254].cpe.mywisp.net
+## 10.100.100.[2:254]
+[cpe:vars]
+ansible_connection=ssh
+ansible_ssh_user=myyser
+ansible_ssh_pass=mypassword # you can do this, but you really should use ansible vault

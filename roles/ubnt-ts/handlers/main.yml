@@ -1,0 +1,4 @@
+---
+# handlers file for ubnt-ts
+- name: saveconf
+  raw: save

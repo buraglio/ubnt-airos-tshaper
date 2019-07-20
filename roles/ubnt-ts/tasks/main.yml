@@ -1,0 +1,44 @@
+---
+# tasks file for ubnt-ts
+- name: back up the existing configuration to system.cfg.tsbak
+  raw: cp /tmp/system.cfg /tmp/system.cfg.tsbak
+- name: add newline because ubnt echo is dumb
+  raw: printf '%s\n' >> /tmp/system.cfg
+- name: enable shaper 1
+  raw: echo tshaper.1.status=enabled >> /tmp/system.cfg
+- name: disable input shaper 1
+  raw: echo tshaper.1.input.status=disabled >> /tmp/system.cfg
+- name: set dummy input rate on shaper 1
+  raw: echo tshaper.1.input.rate=512 >> /tmp/system.cfg
+- name: set zero burst rate on shaper 1
+  raw: echo tshaper.1.input.burst=0 >> /tmp/system.cfg
+- name: enable output shaper 1
+  raw: echo tshaper.1.output.status=enabled >> /tmp/system.cfg
+- name: set output shaper 1 rate
+  raw: echo tshaper.1.output.rate=1512 >> /tmp/system.cfg
+- name: set zero burst rate on output shaper 1
+  raw: echo tshaper.1.output.burst=0 >> /tmp/system.cfg
+- name: set interface device for shaper 1
+  raw: echo tshaper.1.devname=ath0 >> /tmp/system.cfg
+- name: enable shaper 2
+  raw: echo tshaper.2.status=enabled >> /tmp/system.cfg
+- name: disable input shaper 2
+  raw: echo tshaper.2.input.status=disabled >> /tmp/system.cfg
+- name: set dummy rate on input shaper 2
+  raw: echo tshaper.2.input.rate=512 >> /tmp/system.cfg
+- name: set dummy burst rate on input shaper 2
+  raw: echo tshaper.2.input.burst=0 >> /tmp/system.cfg
+- name: enable output shaper 2
+  raw: echo tshaper.2.output.status=enabled >> /tmp/system.cfg
+- name: set shaper 2 output rate
+  raw: echo tshaper.2.output.rate=7680 >> /tmp/system.cfg
+- name: set burst rate on shaper 2
+  raw: echo tshaper.2.output.burst=1512 >> /tmp/system.cfg
+- name: set interface device for shaper 2
+  raw: echo tshaper.2.devname=eth0 >> /tmp/system.cfg
+- name: enable tshaper globally for use
+  raw: sed -i 's/tshaper.status=disabled/tshaper.status=enabled/g' /tmp/system.cfg
+- name: save the configuration
+  raw: cfgmtd -f /tmp/system.cfg -w
+#  ignore_errors: yes
+#  notify: saveconf
