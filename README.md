@@ -1,6 +1,6 @@
 # ubnt-airos-tshaper
 ## What
-Ansible playbooks to enable and configure the traffic shaper on Ubiquity AirOS CPE
+Ansible playbook to enable and configure the traffic shaper on Ubiquity AirOS CPE
 ## Why?
 Ubiquity radios don't seem to have a way to push out mass changes to the tshaper. This stinks, because using the GUI at scale just doesn't work. Until their tools like UNMS or others allow for mass changes to the tshaper settings, this pile of ansible will have to do. 
 
